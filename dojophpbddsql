@@ -1,0 +1,69 @@
+#------------------------------------------------------------
+#        Script MySQL.
+#------------------------------------------------------------
+
+
+#------------------------------------------------------------
+# Table: catégorie
+#------------------------------------------------------------
+
+CREATE TABLE categorie(
+        id_categorie Int  Auto_increment  NOT NULL ,
+        nom          Varchar (255) NOT NULL
+	,CONSTRAINT categorie_PK PRIMARY KEY (id_categorie)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: utilisateur
+#------------------------------------------------------------
+
+CREATE TABLE utilisateur(
+        id_utilisateur Int  Auto_increment  NOT NULL ,
+        pseudo         Varchar (255) NOT NULL ,
+        motdepasse     Varchar (255) NOT NULL ,
+        role           Varchar (255) NOT NULL
+	,CONSTRAINT utilisateur_PK PRIMARY KEY (id_utilisateur)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: article
+#------------------------------------------------------------
+
+CREATE TABLE article(
+        id_article     Int  Auto_increment  NOT NULL ,
+        titre          Varchar (255) NOT NULL ,
+        contenu        Text NOT NULL ,
+        date           Date NOT NULL ,
+        image          Varchar (255) NOT NULL ,
+        status         Bool NOT NULL ,
+        id_utilisateur Int NOT NULL ,
+        id_categorie   Int
+	,CONSTRAINT article_PK PRIMARY KEY (id_article)
+
+	,CONSTRAINT article_utilisateur_FK FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur)
+	,CONSTRAINT article_categorie0_FK FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: commentaire
+#------------------------------------------------------------
+
+CREATE TABLE commentaire(
+        id_commentaire Int  Auto_increment  NOT NULL ,
+        titre          Varchar (255) NOT NULL ,
+        contenu        Text NOT NULL ,
+        date           Date NOT NULL ,
+        id_utilisateur Int NOT NULL ,
+        id_article     Int NOT NULL
+	,CONSTRAINT commentaire_PK PRIMARY KEY (id_commentaire)
+
+	,CONSTRAINT commentaire_utilisateur_FK FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur)
+	,CONSTRAINT commentaire_article0_FK FOREIGN KEY (id_article) REFERENCES article(id_article)
+)ENGINE=InnoDB;
+
+
+
+
