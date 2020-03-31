@@ -20,7 +20,7 @@ $don= $stmt->fetchAll(PDO::FETCH_ASSOC);
         <li><a href="#">
                 <?php
                 foreach ($don as $valeur) {
-                     if($valeur["pseudo"]==["pseudo"]){
+                     if($valeur["id_utilisateur"]!==0){
                 ?>
                <div> <?=$valeur["pseudo"] ?> </div>
                 <?php
