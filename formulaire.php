@@ -9,7 +9,7 @@
           
         ?>
        <p>
-          <label for="login"> votre email </label> 
+          <label for="login"> votre pseudol </label> 
           <input type="text" name="email" id="email" value="" />
         </p>
         <p>

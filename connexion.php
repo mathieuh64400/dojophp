@@ -20,7 +20,7 @@ $valeur= $stmt->fetchAll(PDO::FETCH_ASSOC);
       <fieldset>
         <legend>Identifiez-vous</legend>
         <p>
-          <label for="login"> votre email </label> 
+          <label for="login"> votre pseudo </label> 
           <input type="text" name="email" id="email" value="" />
         </p>
         <p>
