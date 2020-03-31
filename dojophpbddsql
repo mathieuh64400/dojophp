@@ -4,17 +4,6 @@
 
 
 #------------------------------------------------------------
-# Table: catégorie
-#------------------------------------------------------------
-
-CREATE TABLE categorie(
-        id_categorie Int  Auto_increment  NOT NULL ,
-        nom          Varchar (255) NOT NULL
-	,CONSTRAINT categorie_PK PRIMARY KEY (id_categorie)
-)ENGINE=InnoDB;
-
-
-#------------------------------------------------------------
 # Table: utilisateur
 #------------------------------------------------------------
 
@@ -38,12 +27,21 @@ CREATE TABLE article(
         date           Date NOT NULL ,
         image          Varchar (255) NOT NULL ,
         status         Bool NOT NULL ,
-        id_utilisateur Int NOT NULL ,
-        id_categorie   Int
+        id_utilisateur Int NOT NULL
 	,CONSTRAINT article_PK PRIMARY KEY (id_article)
 
 	,CONSTRAINT article_utilisateur_FK FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur)
-	,CONSTRAINT article_categorie0_FK FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: categorie
+#------------------------------------------------------------
+
+CREATE TABLE categorie(
+        id_categorie Int  Auto_increment  NOT NULL ,
+        nom          Varchar (255) NOT NULL
+	,CONSTRAINT categorie_PK PRIMARY KEY (id_categorie)
 )ENGINE=InnoDB;
 
 
@@ -62,6 +60,20 @@ CREATE TABLE commentaire(
 
 	,CONSTRAINT commentaire_utilisateur_FK FOREIGN KEY (id_utilisateur) REFERENCES utilisateur(id_utilisateur)
 	,CONSTRAINT commentaire_article0_FK FOREIGN KEY (id_article) REFERENCES article(id_article)
+)ENGINE=InnoDB;
+
+
+#------------------------------------------------------------
+# Table: posseder
+#------------------------------------------------------------
+
+CREATE TABLE posseder(
+        id_categorie Int NOT NULL ,
+        id_article   Int NOT NULL
+	,CONSTRAINT posseder_PK PRIMARY KEY (id_categorie,id_article)
+
+	,CONSTRAINT posseder_categorie_FK FOREIGN KEY (id_categorie) REFERENCES categorie(id_categorie)
+	,CONSTRAINT posseder_article0_FK FOREIGN KEY (id_article) REFERENCES article(id_article)
 )ENGINE=InnoDB;
 
 

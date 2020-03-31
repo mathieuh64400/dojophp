@@ -1,10 +1,9 @@
 <?php
-session_start();
-session_id();
-$_SESSION['pseudo'] = "";
-$_SESSION['motdepasse'] = "";
-
-?>
+$pdo = new PDO("mysql:host=localhost;dbname=dojophpbduredd;port=3306","phpmyadmin","bddmyadmin");
+$stmt = $pdo->prepare("SELECT * FROM utilisateur");
+$stmt-> execute();
+$don= $stmt->fetchAll(PDO::FETCH_ASSOC);
+?> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,28 +13,29 @@ $_SESSION['motdepasse'] = "";
     <link rel="stylesheet" href="css/dojophp.css">
     <title>Document</title>
 </head>
-<body>
-<header>  
+<header>
 <nav>
     <ul>
         <li><h1>Blog</h1></li>
         <li><a href="#">
                 <?php
-                     if(isset ($_SESSION['pseudo']) && ($_SESSION['motdepasse'])){
+                foreach ($don as $valeur) {
+                     if($valeur["pseudo"]==["pseudo"]){
                 ?>
-               <div> $_POST["Pseudo"] </div>
+               <div> <?=$valeur["pseudo"] ?> </div>
                 <?php
                      }else{
                       ?>   
                     <button> connexion</button> 
                 <?php
                 }
-                ?>  
+                ?> 
+                <?php
+                }
+                ?> 
         </a>
     </li>
         
     </ul>
 </nav>
-</header>  
-</body>
-</html>
+</header>

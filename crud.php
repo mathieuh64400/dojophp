@@ -10,7 +10,7 @@
 <div>
 <h3> Articles </h3>
 </div>
-<div class="row">
+<div>
 <table>
 <thead>
   <tr>
